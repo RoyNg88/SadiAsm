@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\Asm1\Control\EnrollmentControl.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\Asm1\student.csv">
           <value>
             <Attribute>

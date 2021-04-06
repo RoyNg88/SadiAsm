@@ -40,4 +40,3 @@ public class CourseList {
             tt.printTable();
         }
     }
-}

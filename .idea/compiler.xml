@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Sadi" />
         <module name="student-enrolment" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Sadi" target="8" />
       <module name="student-enrolment" target="8" />
     </bytecodeTargetLevel>
   </component>

@@ -11,7 +11,7 @@ public class StudentList {
 
     private static final List<Student> STUDENTS = Arrays.asList(
             new Student(1, "Roy Nguyen", LocalDate.of(1999, Month.JANUARY, 24)),
-            new Student(2, "Tram Le", LocalDate.of(2000, Month.SEPTEMBER, 09)),
+            new Student(2, "Tram Le", LocalDate.of(2000, Month.SEPTEMBER, 01)),
             new Student(3, "Duc Nguyen", LocalDate.of(2000, Month.MARCH, 03)),
             new Student(4, "Thinh Nguyen", LocalDate.of(2000, Month.OCTOBER, 04)),
             new Student(5, "Binh Vuong", LocalDate.of(1999, Month.MAY, 18))

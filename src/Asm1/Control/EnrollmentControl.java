@@ -1,14 +1,14 @@
 package Asm1.Control;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
-
 import Asm1.Course.Course;
 import Asm1.Course.CourseList;
 import Asm1.ManagesStudentEnrolment.StudentEnrollmentManager;
 import Asm1.ManagesStudentEnrolment.StudentEnrolment;
 import Asm1.Student.Student;
 import Asm1.Student.StudentList;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -121,7 +121,7 @@ public class EnrollmentControl implements StudentEnrollmentManager {
                     FileWriter out = new FileWriter(fileName);
                     try (CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(headers))) {
                         for (Course course : courses) {
-                            printer.printRecord(course.getId(), course.getName(), course.getCreditNumber());
+                            printer.printRecord(course.getId(), course.getName(), course.getNof());
                         }
                     }
                     System.out.printf("Exported report. File name is %s%n", fileName);
@@ -223,4 +223,3 @@ public class EnrollmentControl implements StudentEnrollmentManager {
         }
     }
     }
-}
