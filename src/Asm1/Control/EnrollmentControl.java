@@ -176,7 +176,7 @@ public class EnrollmentControl implements StudentEnrollmentManager {
                     FileWriter out = new FileWriter(fileName);
                     try (CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(headers))) {
                         for (Student student : students) {
-                            printer.printRecord(student.getId(), student.getName(), student.getBirthday());
+                            printer.printRecord(student.getId(), student.getName(), student.getBirthdate());
                         }
                     }
                     System.out.printf("Exported report. File name is %s%n", fileName);
@@ -212,7 +212,7 @@ public class EnrollmentControl implements StudentEnrollmentManager {
                     FileWriter out = new FileWriter(fileName);
                     try (CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(headers))) {
                         for (Course course : courses) {
-                            printer.printRecord(course.getId(), course.getName(), course.getCreditNumber());
+                            printer.printRecord(course.getId(), course.getName(), course.getNof());
                         }
                     }
                     System.out.printf("Exported report. File name is %s%n", fileName);
