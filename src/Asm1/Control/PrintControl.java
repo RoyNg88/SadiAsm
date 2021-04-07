@@ -1,17 +1,14 @@
 package Asm1.Control;
 
-import Asm1.Course.CourseList;
+import Asm1.Main;
 import Asm1.ManagesStudentEnrolment.StudentEnrollmentManager;
-import Asm1.Student.StudentList;
+import Asm1.Utils.Menu;
 
 import java.util.Scanner;
 
 public class PrintControl {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final StudentEnrollmentManager ENROLMENT_MANAGER = new EnrollmentControl();
-    private static final StudentList STUDENT_DAO = new StudentList();
-    private static final CourseList COURSE_DAO = new CourseList();
-
 
     static int studentId;
     static int courseId;
@@ -24,7 +21,7 @@ public class PrintControl {
          System.out.print("\tEnter semester: ");
          semester = SCANNER.nextLine();
          ENROLMENT_MANAGER.printAllCoursesForSpecificStudentInSpecificSemester(studentId, semester);
-
+         addBack();
      }
     public static void Printallstudentsof1coursein1semester() {
         System.out.println("=========== Print all students of 1 course in 1 semester ==========");
@@ -33,12 +30,18 @@ public class PrintControl {
         System.out.print("\tEnter semester: ");
         semester = SCANNER.nextLine();
         ENROLMENT_MANAGER.printAllStudentsOfSpecificCourseInSpecificSemester(courseId, semester);
+        addBack();
     }
     public static void Printallcoursesofferedin1semester() {
          System.out.println("=========== Print all courses offered in 1 semester ==========");
          System.out.print("\tEnter semester: ");
          semester = SCANNER.nextLine();
          ENROLMENT_MANAGER.printAllCoursesOfferedInSpecificSemester(semester);
+         addBack();
      }
-
+    private static void addBack() {
+        Menu menu = new Menu("");
+        menu.addOption("Back", Main::mainMenu);
+        menu.start();
+    }
 }

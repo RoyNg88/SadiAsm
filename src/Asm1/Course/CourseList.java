@@ -27,7 +27,7 @@ public class CourseList {
         }
 
         public void print(List<Course> courses) {
-            System.out.println("========== List of courses ==========");
+            System.out.println("     ****  List of courses ****    ");
             String[] headers = new String[] {"Course Id", "Course Name", "Credit Number"};
             Object[][] data = new Object[courses.size()][headers.length];
             for (int i = 0; i < courses.size(); i++) {

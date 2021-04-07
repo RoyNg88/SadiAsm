@@ -2,11 +2,12 @@ package Asm1.Control;
 
 import Asm1.Course.Course;
 import Asm1.Course.CourseList;
+import Asm1.Main;
 import Asm1.ManagesStudentEnrolment.StudentEnrollmentManager;
 import Asm1.ManagesStudentEnrolment.StudentEnrolment;
 import Asm1.Student.Student;
 import Asm1.Student.StudentList;
-
+import Asm1.Utils.Menu;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
 
 
 public class EnrollmentControl implements StudentEnrollmentManager {
@@ -42,6 +44,8 @@ public class EnrollmentControl implements StudentEnrollmentManager {
         Student student = STUDENT_LIST.getOne(studentId);
         Course course = COURSE_LIST.getOne(courseId);
         ENROLMENT_MANAGER.add(new StudentEnrolment(student, course, semester));
+        System.out.println("Create Success");
+        addBack();
     }
 
     public static void UpdateEnroll(){
@@ -59,7 +63,10 @@ public class EnrollmentControl implements StudentEnrollmentManager {
         int enrolmentId = studentEnrolment.getId();
         Course newCourse = COURSE_LIST.getOne(newCourseId);
         studentEnrolment.setCourse(newCourse);
-        ENROLMENT_MANAGER.update(enrolmentId, studentEnrolment);}
+        ENROLMENT_MANAGER.update(enrolmentId, studentEnrolment);
+        System.out.println("Update Success");
+        addBack();
+    }
 
     public static void DeleteEnroll(){
         System.out.println("=========== Delete an enrolment of a student for 1 semester ==========");
@@ -71,10 +78,16 @@ public class EnrollmentControl implements StudentEnrollmentManager {
         System.out.print("\tEnter course id: ");
         courseId = Integer.parseInt(SCANNER.nextLine());
         ENROLMENT_MANAGER.deleteByCourseId(courseId);
+        System.out.println("Delete Success");
+        addBack();
+    }
+    private static void addBack() {
+        Menu menu = new Menu("");
+        menu.addOption("Back", Main::mainMenu);
+        menu.start();
     }
 
-
-    @Override
+        @Override
     public void add(StudentEnrolment studentEnrolment) {
         studentEnrolments.add(studentEnrolment);
     }
