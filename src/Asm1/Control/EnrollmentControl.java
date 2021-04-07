@@ -18,11 +18,61 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+
 public class EnrollmentControl implements StudentEnrollmentManager {
     private static final Scanner SCANNER = new Scanner(System.in);
-    private static final StudentList STUDENT_LIST = new StudentList();
-    private static final CourseList COURSE_LIST = new CourseList();
+    public static final StudentList STUDENT_LIST = new StudentList();
+    public static final CourseList COURSE_LIST = new CourseList();
     private static List<StudentEnrolment> studentEnrolments = new ArrayList<>();
+    private static final StudentEnrollmentManager ENROLMENT_MANAGER = new EnrollmentControl();
+
+    static int studentId;
+    static int courseId;
+    static String semester;
+
+    public static void CreateEnroll(){
+        System.out.println("=========== Enroll a student for 1 semester ==========");
+        System.out.print("\tEnter student id: ");
+        studentId = Integer.parseInt(SCANNER.nextLine());
+        System.out.print("\tEnter course id: ");
+        courseId = Integer.parseInt(SCANNER.nextLine());
+        System.out.print("\tEnter semester: ");
+        semester = SCANNER.nextLine();
+
+        Student student = STUDENT_LIST.getOne(studentId);
+        Course course = COURSE_LIST.getOne(courseId);
+        ENROLMENT_MANAGER.add(new StudentEnrolment(student, course, semester));
+    }
+
+    public static void UpdateEnroll(){
+        System.out.println("=========== Update an enrolment of a student for 1 semester ==========");
+        System.out.print("\tEnter student id: ");
+        studentId = Integer.parseInt(SCANNER.nextLine());
+        System.out.print("\tEnter semester: ");
+        semester = SCANNER.nextLine();
+        ENROLMENT_MANAGER.printAllCoursesForSpecificStudentInSpecificSemester(studentId, semester);
+        System.out.print("\tEnter old course id: ");
+        int oldCourseId = Integer.parseInt(SCANNER.nextLine());
+        StudentEnrolment studentEnrolment = ENROLMENT_MANAGER.getOneByStudentAndCourseAndSemester(studentId, oldCourseId, semester);
+        System.out.print("\tEnter new course id: ");
+        int newCourseId = Integer.parseInt(SCANNER.nextLine());
+        int enrolmentId = studentEnrolment.getId();
+        Course newCourse = COURSE_LIST.getOne(newCourseId);
+        studentEnrolment.setCourse(newCourse);
+        ENROLMENT_MANAGER.update(enrolmentId, studentEnrolment);}
+
+    public static void DeleteEnroll(){
+        System.out.println("=========== Delete an enrolment of a student for 1 semester ==========");
+        System.out.print("\tEnter student id: ");
+        studentId = Integer.parseInt(SCANNER.nextLine());
+        System.out.print("\tEnter semester: ");
+        semester = SCANNER.nextLine();
+        ENROLMENT_MANAGER.printAllCoursesForSpecificStudentInSpecificSemester(studentId, semester);
+        System.out.print("\tEnter course id: ");
+        courseId = Integer.parseInt(SCANNER.nextLine());
+        ENROLMENT_MANAGER.deleteByCourseId(courseId);
+    }
+
 
     @Override
     public void add(StudentEnrolment studentEnrolment) {
