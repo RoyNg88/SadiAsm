@@ -1,104 +1,32 @@
 package Asm1;
 
 import Asm1.Control.EnrollmentControl;
-import Asm1.Course.Course;
-import Asm1.Course.CourseList;
-import Asm1.ManagesStudentEnrolment.StudentEnrollmentManager;
-import Asm1.ManagesStudentEnrolment.StudentEnrolment;
-import Asm1.Student.Student;
-import Asm1.Student.StudentList;
+import Asm1.Control.PrintControl;
+import Asm1.Utils.Menu;
 
-import java.util.Scanner;
+import static Asm1.Control.EnrollmentControl.COURSE_LIST;
+import static Asm1.Control.EnrollmentControl.STUDENT_LIST;
 
 public class Main {
 
-    private static final Scanner SCANNER = new Scanner(System.in);
-    private static final StudentEnrollmentManager ENROLMENT_MANAGER = new EnrollmentControl();
-    private static final StudentList STUDENT_DAO = new StudentList();
-    private static final CourseList COURSE_DAO = new CourseList();
+    public static void main(String[] args) throws Exception{
+        mainMenu();
+    }
+    public static void mainMenu() {
+        System.out.println("============================== Student Enrollment Program =========================");
+        STUDENT_LIST.print(STUDENT_LIST.getAll());
+        COURSE_LIST.print(COURSE_LIST.getAll());
 
-    public static void main(String[] args) {
-        int choose;
-        do {
-            System.out.println("============================== Student Enrollment Program =========================");
-            STUDENT_DAO.print(STUDENT_DAO.getAll());
-            COURSE_DAO.print(COURSE_DAO.getAll());
-            System.out.println("1. Print all courses for 1 student in 1 semester");
-            System.out.println("2. Print all students of 1 course in 1 semester");
-            System.out.println("3. Print all courses offered in 1 semester");
-            System.out.println("4. Enroll a student for 1 semester");
-            System.out.println("5. Update an enrolment of a student for 1 semester");
-            System.out.println("6. Delete an enrolment of a student for 1 semester");
-            System.out.println("0. Exit");
-            System.out.print("Enter your choose: ");
-            choose = Integer.parseInt(SCANNER.nextLine());
-            int studentId;
-            int courseId;
-            String semester;
-            switch (choose) {
-                case 1:
-                    System.out.println("=========== Print all courses for 1 student in 1 semester ==========");
-                    System.out.print("\tEnter student id: ");
-                    studentId = Integer.parseInt(SCANNER.nextLine());
-                    System.out.print("\tEnter semester: ");
-                    semester = SCANNER.nextLine();
-                    ENROLMENT_MANAGER.printAllCoursesForSpecificStudentInSpecificSemester(studentId, semester);
-                    break;
-                case 2:
-                    System.out.println("=========== Print all students of 1 course in 1 semester ==========");
-                    System.out.print("\tEnter course id: ");
-                    courseId = Integer.parseInt(SCANNER.nextLine());
-                    System.out.print("\tEnter semester: ");
-                    semester = SCANNER.nextLine();
-                    ENROLMENT_MANAGER.printAllStudentsOfSpecificCourseInSpecificSemester(courseId, semester);
-                    break;
-                case 3:
-                    System.out.println("=========== Print all courses offered in 1 semester ==========");
-                    System.out.print("\tEnter semester: ");
-                    semester = SCANNER.nextLine();
-                    ENROLMENT_MANAGER.printAllCoursesOfferedInSpecificSemester(semester);
-                    break;
-                case 4:
-                    System.out.println("=========== Enroll a student for 1 semester ==========");
-                    System.out.print("\tEnter student id: ");
-                    studentId = Integer.parseInt(SCANNER.nextLine());
-                    System.out.print("\tEnter course id: ");
-                    courseId = Integer.parseInt(SCANNER.nextLine());
-                    System.out.print("\tEnter semester: ");
-                    semester = SCANNER.nextLine();
-
-                    Student student = STUDENT_DAO.getOne(studentId);
-                    Course course = COURSE_DAO.getOne(courseId);
-                    ENROLMENT_MANAGER.add(new StudentEnrolment(student, course, semester));
-                    break;
-                case 5:
-                    System.out.println("=========== Update an enrolment of a student for 1 semester ==========");
-                    System.out.print("\tEnter student id: ");
-                    studentId = Integer.parseInt(SCANNER.nextLine());
-                    System.out.print("\tEnter semester: ");
-                    semester = SCANNER.nextLine();
-                    ENROLMENT_MANAGER.printAllCoursesForSpecificStudentInSpecificSemester(studentId, semester);
-                    System.out.print("\tEnter old course id: ");
-                    int oldCourseId = Integer.parseInt(SCANNER.nextLine());
-                    StudentEnrolment studentEnrolment = ENROLMENT_MANAGER.getOneByStudentAndCourseAndSemester(studentId, oldCourseId, semester);
-                    System.out.print("\tEnter new course id: ");
-                    int newCourseId = Integer.parseInt(SCANNER.nextLine());
-                    int enrolmentId = studentEnrolment.getId();
-                    Course newCourse = COURSE_DAO.getOne(newCourseId);
-                    studentEnrolment.setCourse(newCourse);
-                    ENROLMENT_MANAGER.update(enrolmentId, studentEnrolment);
-                    break;
-                case 6:
-                    System.out.println("=========== Delete an enrolment of a student for 1 semester ==========");
-                    System.out.print("\tEnter student id: ");
-                    studentId = Integer.parseInt(SCANNER.nextLine());
-                    System.out.print("\tEnter semester: ");
-                    semester = SCANNER.nextLine();
-                    ENROLMENT_MANAGER.printAllCoursesForSpecificStudentInSpecificSemester(studentId, semester);
-                    System.out.print("\tEnter course id: ");
-                    courseId = Integer.parseInt(SCANNER.nextLine());
-                    ENROLMENT_MANAGER.deleteByCourseId(courseId);
-            }
-        } while (choose != 0);
+        Menu menu = new Menu("Menu");
+        menu.addOption("Print all courses for 1 student in 1 semester", PrintControl::Printallcoursesfor1studentin1semester);
+        menu.addOption("Print all students of 1 course in 1 semester", PrintControl::Printallstudentsof1coursein1semester);
+        menu.addOption("Print all courses offered in 1 semester", PrintControl::Printallcoursesofferedin1semester);
+        menu.addOption("Enroll a student for 1 semester",EnrollmentControl::CreateEnroll);
+        menu.addOption("Update an enrolment of a student for 1 semester",EnrollmentControl::UpdateEnroll);
+        menu.addOption("Delete an enrolment of a student for 1 semester",EnrollmentControl::DeleteEnroll);
+        menu.addOption("Exit",()->{
+            System.out.println("Exiting");
+        });
+        menu.start();
     }
 }
