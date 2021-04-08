@@ -24,7 +24,6 @@ public class PrintControl {
     }
 
      private static void Printallcoursesfor1studentin1semester() {
-         System.out.println("=========== Print all courses for 1 student in 1 semester ==========");
          System.out.print("\tEnter student id: ");
          studentId = Integer.parseInt(SCANNER.nextLine());
          System.out.print("\tEnter semester: ");
@@ -33,7 +32,6 @@ public class PrintControl {
          addBack();
      }
     private static void Printallstudentsof1coursein1semester() {
-        System.out.println("=========== Print all students of 1 course in 1 semester ==========");
         System.out.print("\tEnter course id: ");
         courseId = Integer.parseInt(SCANNER.nextLine());
         System.out.print("\tEnter semester: ");
@@ -42,7 +40,6 @@ public class PrintControl {
         addBack();
     }
     private static void Printallcoursesofferedin1semester() {
-         System.out.println("=========== Print all courses offered in 1 semester ==========");
          System.out.print("\tEnter semester: ");
          semester = SCANNER.nextLine();
          ENROLMENT_MANAGER.printAllCoursesOfferedInSpecificSemester(semester);
