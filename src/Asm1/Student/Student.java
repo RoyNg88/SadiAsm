@@ -1,14 +1,13 @@
 package Asm1.Student;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class Student {
     private int id;
     private String name;
-    private LocalDate birthdate;
+    private String birthdate;
 
-    public Student(int id, String name, LocalDate birthdate) {
+    public Student(int id, String name, String birthdate) {
         this.id = id;
         this.name = name;
         this.birthdate = birthdate;
@@ -30,11 +29,11 @@ public class Student {
         this.name = name;
     }
 
-    public LocalDate getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 

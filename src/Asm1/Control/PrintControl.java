@@ -14,7 +14,16 @@ public class PrintControl {
     static int courseId;
     static String semester;
 
-     public static void Printallcoursesfor1studentin1semester() {
+    public static void PrintMenu(){
+        Menu menu = new Menu("Control for Print");
+        menu.addOption("Print enrollments for a student", PrintControl::Printallcoursesfor1studentin1semester);
+        menu.addOption("Print enrollments for a course", PrintControl::Printallstudentsof1coursein1semester);
+        menu.addOption("Print enrollments for a semester", PrintControl::Printallcoursesofferedin1semester);
+        menu.addOption("Back main menu", Main::mainMenu);
+        menu.start();
+    }
+
+     private static void Printallcoursesfor1studentin1semester() {
          System.out.println("=========== Print all courses for 1 student in 1 semester ==========");
          System.out.print("\tEnter student id: ");
          studentId = Integer.parseInt(SCANNER.nextLine());
@@ -23,7 +32,7 @@ public class PrintControl {
          ENROLMENT_MANAGER.printAllCoursesForSpecificStudentInSpecificSemester(studentId, semester);
          addBack();
      }
-    public static void Printallstudentsof1coursein1semester() {
+    private static void Printallstudentsof1coursein1semester() {
         System.out.println("=========== Print all students of 1 course in 1 semester ==========");
         System.out.print("\tEnter course id: ");
         courseId = Integer.parseInt(SCANNER.nextLine());
@@ -32,7 +41,7 @@ public class PrintControl {
         ENROLMENT_MANAGER.printAllStudentsOfSpecificCourseInSpecificSemester(courseId, semester);
         addBack();
     }
-    public static void Printallcoursesofferedin1semester() {
+    private static void Printallcoursesofferedin1semester() {
          System.out.println("=========== Print all courses offered in 1 semester ==========");
          System.out.print("\tEnter semester: ");
          semester = SCANNER.nextLine();

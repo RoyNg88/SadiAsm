@@ -8,6 +8,7 @@ import Asm1.ManagesStudentEnrolment.StudentEnrolment;
 import Asm1.Student.Student;
 import Asm1.Student.StudentList;
 import Asm1.Utils.Menu;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
@@ -32,7 +33,15 @@ public class EnrollmentControl implements StudentEnrollmentManager {
     static int courseId;
     static String semester;
 
-    public static void CreateEnroll(){
+    public static void EnrollMenu(){
+        Menu menu =new Menu("Control for Enrollment");
+        menu.addOption("Create an Enrollment", EnrollmentControl::CreateEnroll);
+        menu.addOption("Update an Enrollment", EnrollmentControl::UpdateEnroll);
+        menu.addOption("Delete an Enrollment", EnrollmentControl::DeleteEnroll);
+        menu.addOption("Back main menu", Main::mainMenu);
+        menu.start();
+    }
+    private static void CreateEnroll(){
         System.out.println("=========== Enroll a student for 1 semester ==========");
         System.out.print("\tEnter student id: ");
         studentId = Integer.parseInt(SCANNER.nextLine());
@@ -48,7 +57,7 @@ public class EnrollmentControl implements StudentEnrollmentManager {
         addBack();
     }
 
-    public static void UpdateEnroll(){
+    private static void UpdateEnroll(){
         System.out.println("=========== Update an enrolment of a student for 1 semester ==========");
         System.out.print("\tEnter student id: ");
         studentId = Integer.parseInt(SCANNER.nextLine());
@@ -68,7 +77,7 @@ public class EnrollmentControl implements StudentEnrollmentManager {
         addBack();
     }
 
-    public static void DeleteEnroll(){
+    private static void DeleteEnroll(){
         System.out.println("=========== Delete an enrolment of a student for 1 semester ==========");
         System.out.print("\tEnter student id: ");
         studentId = Integer.parseInt(SCANNER.nextLine());
@@ -81,13 +90,21 @@ public class EnrollmentControl implements StudentEnrollmentManager {
         System.out.println("Delete Success");
         addBack();
     }
+    public static void Showallstudent(){
+        STUDENT_LIST.print(STUDENT_LIST.getAll());
+        addBack();
+    }
+    public static void Showallcourse(){
+        COURSE_LIST.print(COURSE_LIST.getAll());
+        addBack();
+    }
     private static void addBack() {
         Menu menu = new Menu("");
         menu.addOption("Back", Main::mainMenu);
         menu.start();
     }
 
-        @Override
+    @Override
     public void add(StudentEnrolment studentEnrolment) {
         studentEnrolments.add(studentEnrolment);
     }
