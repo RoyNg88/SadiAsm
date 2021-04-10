@@ -2,12 +2,12 @@ package Asm1.Control;
 
 import Asm1.Course.Course;
 import Asm1.Course.CourseList;
-import Asm1.Main;
 import Asm1.ManagesStudentEnrolment.StudentEnrollmentManager;
 import Asm1.ManagesStudentEnrolment.StudentEnrolment;
 import Asm1.Student.Student;
 import Asm1.Student.StudentList;
 import Asm1.Utils.Menu;
+import Asm1.Main;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -42,7 +42,6 @@ public class EnrollmentControl implements StudentEnrollmentManager {
         menu.start();
     }
     private static void CreateEnroll(){
-        System.out.println("=========== Enroll a student for 1 semester ==========");
         System.out.print("\tEnter student id: ");
         studentId = Integer.parseInt(SCANNER.nextLine());
         System.out.print("\tEnter course id: ");
@@ -58,7 +57,6 @@ public class EnrollmentControl implements StudentEnrollmentManager {
     }
 
     private static void UpdateEnroll(){
-        System.out.println("=========== Update an enrolment of a student for 1 semester ==========");
         System.out.print("\tEnter student id: ");
         studentId = Integer.parseInt(SCANNER.nextLine());
         System.out.print("\tEnter semester: ");
@@ -78,7 +76,6 @@ public class EnrollmentControl implements StudentEnrollmentManager {
     }
 
     private static void DeleteEnroll(){
-        System.out.println("=========== Delete an enrolment of a student for 1 semester ==========");
         System.out.print("\tEnter student id: ");
         studentId = Integer.parseInt(SCANNER.nextLine());
         System.out.print("\tEnter semester: ");

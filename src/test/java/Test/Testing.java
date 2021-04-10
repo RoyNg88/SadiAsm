@@ -1,4 +1,4 @@
-package test.java;
+package Test;
 
 import Asm1.Control.EnrollmentControl;
 import Asm1.Course.Course;
@@ -7,6 +7,7 @@ import Asm1.ManagesStudentEnrolment.StudentEnrollmentManager;
 import Asm1.ManagesStudentEnrolment.StudentEnrolment;
 import Asm1.Student.Student;
 import Asm1.Student.StudentList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,17 +42,17 @@ public class Testing {
         String semester = "2021A";
         studentEnrolmentManager.add(new StudentEnrolment(student, course, semester));
         StudentEnrolment enrolment = studentEnrolmentManager.getOneByStudentAndCourseAndSemester(student.getId(), course.getId(), semester);
-        assertEquals("Student 1", enrolment.getStudent().getName());
+        assertEquals("Roy Nguyen", enrolment.getStudent().getName());
     }
 
     @Test
     public void testEnrolmentCourseNameWhenAddNew() {
         Student student = studentList.getOne(1);
-        Course course = courseList.getOne(2);
+        Course course = courseList.getOne(1);
         String semester = "2021A";
         studentEnrolmentManager.add(new StudentEnrolment(student, course, semester));
         StudentEnrolment enrolment = studentEnrolmentManager.getOneByStudentAndCourseAndSemester(student.getId(), course.getId(), semester);
-        assertEquals("Course 2", enrolment.getCourse().getName());
+        assertEquals("Sadi", enrolment.getCourse().getName());
     }
 
     @Test
@@ -64,7 +65,7 @@ public class Testing {
         enrolment.setCourse(courseList.getOne(2));
         studentEnrolmentManager.update(enrolment.getId(), enrolment);
         StudentEnrolment newEnrolment = studentEnrolmentManager.getOne(enrolment.getId());
-        assertEquals("Course 2", newEnrolment.getCourse().getName());
+        assertEquals("Sadi", newEnrolment.getCourse().getName());
     }
 
     @Test
