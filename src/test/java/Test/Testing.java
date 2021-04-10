@@ -62,7 +62,7 @@ public class Testing {
         String semester = "2021A";
         studentEnrolmentManager.add(new StudentEnrolment(student, course, semester));
         StudentEnrolment enrolment = studentEnrolmentManager.getOneByStudentAndCourseAndSemester(student.getId(), course.getId(), semester);
-        enrolment.setCourse(courseList.getOne(2));
+        enrolment.setCourse(courseList.getOne(1));
         studentEnrolmentManager.update(enrolment.getId(), enrolment);
         StudentEnrolment newEnrolment = studentEnrolmentManager.getOne(enrolment.getId());
         assertEquals("Sadi", newEnrolment.getCourse().getName());
