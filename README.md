@@ -1,3 +1,5 @@
+I. Instructions
+
 A. To CRUD all function enrollment in the system press 1 at the main menu
     
     - To create a new enrollment, input student id, course id and semester press 1 at the enrollment menu
@@ -22,3 +24,6 @@ A. To CRUD all function enrollment in the system press 1 at the main menu
 
  D. To quit the program press 4 at the main menu
 
+II. Test case
+
+    - Consider that the enrolment are existed already and user input the same studentId, courseId and semester in.
